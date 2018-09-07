@@ -1,4 +1,8 @@
 #include <iostream>
+#include <stdio.h>    
+#include <stdlib.h>   
+#include <time.h> 
+
 using namespace std;
 
 //Guessing Game by Justin He- guess a number between 0-100
