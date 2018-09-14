@@ -1,75 +1,57 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>    
+#include <stdlib.h>   
+#include <time.h> 
 
 using namespace std;
 
-//Palindrome by Justin He- Input a string of up to 80 characters and
-//it will check to see if is the same backwards and forwards not including
-//punctuation and spaces.
+//Guessing Game by Justin He- guess a number between 0-100
+//the computer will tell you if it is too high or too low or correct
+//if correct your number of guesses will be displayed and have the option
+//to play again
 
-int main()
-{
-  char str[80];
-  char str1[80];
-  char str2[80];
-  int a=0;
-  int b =0;
-  int size = 0;
-  cout << "Input a string: " << endl;
-  cin.getline(str, 80);
+int main() {
+int input;
+ int running = 1;
+ int playing = 1;
+ char yn = ' ';
+ while(playing == 1){
+     srand(time(NULL));
+     int num = rand() %101; //generate random number 0-100
+     int count = 0; //keeps track of guesses
+   running =1;
+   cout << "Input your guess (a number from 0 to 100): " << endl;
+ while(running == 1){
+   cin >>input;
+   count++; //takes in input and adds to count
+ if (input > num){
+   cout << "Not equal, guess is too high"<<endl  ; }
 
-  int count=0;
+ if (input < num){
+    cout << "Not equal, guess is too low" << endl; }
 
+ if (input == num){
+   //if input matches number, total guesses are displayed and option to play again
+  cout <<"Correct"<<endl;
+  cout <<count << " guesses"<<endl << endl;
+  running =0;
+  cout <<"PLAY AGAIN? (Y/N)"<<endl;
+  cin >>yn;
 
-  // find the size of the input string and remove white space/others
-  while (str[a] != '\0'){
-    if (str[a]>='0' && str[a]<='9' || str[a]>='a' && str[a]<='z') {
-      str1[size] = str[a];
-      size++;
-    }
-
-    // convert upper case to lower case
-    if (str[a] >='A' && str[a] <= 'Z') {
-      str1[size] = str[a] + 32;
-      size++;
-    }
-
-    a++;
+  if(yn=='y'||yn=='Y'){ //restarts game if player answers yes
+    cout <<"RESTARTING"<<endl<<endl;
+    playing = 1;
   }
 
-
-
-  str1[size] = '\0';
-
-  //  cout<<"The string (trimed) is: " << str1 <<endl;
-
-  // copy str1 to str2 in reverse order
-  b=0;
-  for (int a = size-1; a>=0; a--)
-    {
-      str2[b] = str1[a];
-      b++;
-    }
-
-  str2[b] = '\0';   // marks the end of str2
-  // cout << "The string converted to reverse order: " << str2 << endl;
-
-  // compare the two strings:
-  for(int i = 0; i<size; i=i+1){
-    if(str1[i]!=str2[i]){
-      count++;
-    }
+  if(yn=='n'||yn=='N'){
+    cout <<"EXITING"<<endl;
+    playing = 0;
   }
 
-    if(count==0){
-      cout << "Palindrome" << endl;
-    }
-    else{
-      cout << "This is not palindrome" << endl;
-
-    }
+ }
 
 
-  return 0;
+ }
+}
+ return 0;
 }
